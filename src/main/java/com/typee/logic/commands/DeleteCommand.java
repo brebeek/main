@@ -43,8 +43,8 @@ public class DeleteCommand extends Command {
         Engagement engagementToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEngagement(engagementToDelete);
         model.saveEngagementList();
-        return new CommandResult(String.format(DeleteCommand.
-                MESSAGE_DELETE_ENGAGEMENT_SUCCESS_SUCCESS, engagementToDelete));
+        return new CommandResult(String.format(DeleteCommand
+                .MESSAGE_DELETE_ENGAGEMENT_SUCCESS_SUCCESS, engagementToDelete));
     }
 
     @Override

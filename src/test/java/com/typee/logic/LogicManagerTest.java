@@ -54,8 +54,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).build();
+        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_MEETING;
+        Person expectedPerson = new PersonBuilder(MEETING).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEngagement(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

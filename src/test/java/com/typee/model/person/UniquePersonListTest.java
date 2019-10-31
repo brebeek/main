@@ -1,7 +1,7 @@
 package com.typee.model.person;
 
 //import static com.typee.testutil.TypicalPersons.ALICE;
-//import static com.typee.testutil.TypicalPersons.BOB;
+//import static com.typee.testutil.TypicalPersons.INTERVIEW;
 
 public class UniquePersonListTest {
 
@@ -79,17 +79,17 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.setEngagement(ALICE, BOB);
+        uniquePersonList.setEngagement(ALICE, INTERVIEW);
         UniqueEngagementList expectedUniquePersonList = new UniqueEngagementList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(INTERVIEW);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setEngagement(ALICE, BOB));
+        uniquePersonList.add(INTERVIEW);
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setEngagement(ALICE, INTERVIEW));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class UniquePersonListTest {
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
         uniquePersonList.add(ALICE);
         UniqueEngagementList expectedUniquePersonList = new UniqueEngagementList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(INTERVIEW);
         uniquePersonList.setEngagements(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -132,10 +132,10 @@ public class UniquePersonListTest {
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
+        List<Person> personList = Collections.singletonList(INTERVIEW);
         uniquePersonList.setPersons(personList);
         UniqueEngagementList expectedUniquePersonList = new UniqueEngagementList();
-        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(INTERVIEW);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 

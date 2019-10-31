@@ -1,7 +1,7 @@
 package com.typee.logic.parser;
 
-//import static com.typee.testutil.TypicalPersons.AMY;
-//import static com.typee.testutil.TypicalPersons.BOB;
+//import static com.typee.testutil.TypicalPersons.MEETING;
+//import static com.typee.testutil.TypicalPersons.INTERVIEW;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -9,36 +9,36 @@ public class AddCommandParserTest {
     /*
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Person expectedPerson = new PersonBuilder(INTERVIEW).build();
 
         // whitespace only preamble
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE
-                + CommandTestUtil.NAME_DESC_BOB, new AddCommand(expectedPerson));
+                + CommandTestUtil.NAME_DESC_INTERVIEW, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
-                + CommandTestUtil.NAME_DESC_BOB, new AddCommand(expectedPerson));
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_MEETING
+                + CommandTestUtil.NAME_DESC_INTERVIEW, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB, new AddCommand(expectedPerson));
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_INTERVIEW, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB, new AddCommand(expectedPerson));
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_INTERVIEW, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB, new AddCommand(expectedPerson));
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_INTERVIEW, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).build();
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB,
+        Person expectedPersonMultipleTags = new PersonBuilder(INTERVIEW).build();
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_INTERVIEW,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).build();
-        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY, new AddCommand(expectedPerson));
+        Person expectedPerson = new PersonBuilder(MEETING).build();
+        CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_MEETING, new AddCommand(expectedPerson));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_NAME_BOB, expectedMessage);
+        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_NAME_INTERVIEW, expectedMessage);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.PREAMBLE_NON_EMPTY
-                        + CommandTestUtil.NAME_DESC_BOB,
+                        + CommandTestUtil.NAME_DESC_INTERVIEW,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 

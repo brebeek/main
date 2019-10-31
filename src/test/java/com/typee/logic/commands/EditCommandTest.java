@@ -31,10 +31,10 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredEngagementList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Person editedPerson = personInList.withName(CommandTestUtil.VALID_NAME_INTERVIEW).build();
 
         EditCommand.EditEngagementDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(CommandTestUtil.VALID_NAME_BOB)
+                .withName(CommandTestUtil.VALID_NAME_INTERVIEW)
                 .build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
@@ -68,9 +68,9 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredEngagementList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Person editedPerson = new PersonBuilder(personInFilteredList).withName(CommandTestUtil.VALID_NAME_INTERVIEW).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_INTERVIEW).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -107,7 +107,7 @@ public class EditCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEngagementList().size() + 1);
         EditCommand.EditEngagementDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(CommandTestUtil.VALID_NAME_BOB)
+                .withName(CommandTestUtil.VALID_NAME_INTERVIEW)
                 .build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -129,18 +129,18 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getHistoryManager().getEngagementList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
+                new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_INTERVIEW).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_MEETING);
 
         // same values -> returns true
         EditCommand.EditEngagementDescriptor copyDescriptor = new EditCommand
-                .EditEngagementDescriptor(CommandTestUtil.DESC_AMY);
+                .EditEngagementDescriptor(CommandTestUtil.DESC_MEETING);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -154,10 +154,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, CommandTestUtil.DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, CommandTestUtil.DESC_MEETING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, CommandTestUtil.DESC_INTERVIEW)));
     }
      */
 }

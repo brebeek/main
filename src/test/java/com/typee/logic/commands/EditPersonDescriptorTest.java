@@ -7,25 +7,25 @@ public class EditPersonDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditEngagementDescriptor descriptorWithSameValues = new EditCommand
-                .EditEngagementDescriptor(CommandTestUtil.DESC_AMY);
-        assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
+                .EditEngagementDescriptor(CommandTestUtil.DESC_MEETING);
+        assertTrue(CommandTestUtil.DESC_MEETING.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
+        assertTrue(CommandTestUtil.DESC_MEETING.equals(CommandTestUtil.DESC_MEETING));
 
         // null -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(null));
+        assertFalse(CommandTestUtil.DESC_MEETING.equals(null));
 
         // different types -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(5));
+        assertFalse(CommandTestUtil.DESC_MEETING.equals(5));
 
         // different values -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
+        assertFalse(CommandTestUtil.DESC_MEETING.equals(CommandTestUtil.DESC_INTERVIEW));
 
         // different name -> returns false
-        EditCommand.EditEngagementDescriptor editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        EditCommand.EditEngagementDescriptor editedMeeting = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_MEETING)
+                .withName(CommandTestUtil.VALID_NAME_INTERVIEW).build();
+        assertFalse(CommandTestUtil.DESC_MEETING.equals(editedMeeting));
 
     }
 

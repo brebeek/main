@@ -19,8 +19,8 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_AMY).build();
-    public static final Person BOB = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+    public static final Person MEETING = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_MEETING).build();
+    public static final Person INTERVIEW = new PersonBuilder().withName(CommandTestUtil.VALID_NAME_INTERVIEW).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

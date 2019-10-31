@@ -1,8 +1,13 @@
 package com.typee.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import com.typee.commons.core.Messages;
+import com.typee.logic.commands.CommandTestUtil;
+import com.typee.logic.commands.EditCommand;
+
 public class EditCommandParserTest {
 
-    /*
+
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
@@ -11,7 +16,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.VALID_DESCRIPTION_TEAM_MEETING,
+                MESSAGE_INVALID_FORMAT);
 
         // no field specified
         CommandParserTestUtil.assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -23,11 +29,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        CommandParserTestUtil.assertParseFailure(parser, "-5" + CommandTestUtil.NAME_DESC_AMY,
+        CommandParserTestUtil.assertParseFailure(parser, "-5" + CommandTestUtil.DESCRIPT_DESC_MEET,
                 MESSAGE_INVALID_FORMAT);
 
         // zero index
-        CommandParserTestUtil.assertParseFailure(parser, "0" + CommandTestUtil.NAME_DESC_AMY,
+        CommandParserTestUtil.assertParseFailure(parser, "0" + CommandTestUtil.DESCRIPT_DESC_MEET,
                 MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -40,21 +46,21 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC,
-                Name.MESSAGE_CONSTRAINTS); // invalid name
+                .MESSAGE_CONSTRAINTS); // invalid name
 
         // multiple invalid values, but only the first invalid value is captured
         CommandParserTestUtil.assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC
-                        + CommandTestUtil.VALID_ADDRESS_AMY + CommandTestUtil.VALID_PHONE_AMY,
+                        + CommandTestUtil.VALID_ADDRESS_MEETING + CommandTestUtil.VALID_PHONE_MEETING,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + CommandTestUtil.DESCRIPT_DESC_MEET;
 
         EditCommand.EditEngagementDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(CommandTestUtil.VALID_NAME_AMY)
+                .withName(CommandTestUtil.VALID_NAME_MEETING)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -65,14 +71,14 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + CommandTestUtil.NAME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + CommandTestUtil.DESCRIPT_DESC_MEET;
         EditCommand.EditEngagementDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(CommandTestUtil.VALID_NAME_AMY)
+                .withName(CommandTestUtil.VALID_NAME_MEETING)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-     */
+
 
 }

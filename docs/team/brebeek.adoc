@@ -7,6 +7,7 @@
 
 == Overview
 
+____
 Typee is a desktop engagement management application. It has a GUI created with JavaFX, but most of the user interactions happen using a CLI (Command Line Interface).
 It is an appointment manager for secretaries and receptionists to better schedule and manage appointments. It is written in Java, and has about 15 kLoC.
 

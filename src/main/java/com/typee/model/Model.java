@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import com.typee.commons.core.GuiSettings;
+import com.typee.logic.commands.Command;
 import com.typee.logic.commands.exceptions.NullRedoableActionException;
 import com.typee.logic.commands.exceptions.NullUndoableActionException;
 import com.typee.model.engagement.Engagement;
@@ -106,4 +107,8 @@ public interface Model {
     void saveEngagementList();
 
     void redoEngagementList() throws NullRedoableActionException;
+
+    void pushCommandHistory(Command command);
+
+    Command getLatestCommand();
 }

@@ -3,6 +3,7 @@ package com.typee.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.typee.logic.commands.Command;
 import com.typee.logic.commands.exceptions.NullRedoableActionException;
 import com.typee.logic.commands.exceptions.NullUndoableActionException;
 
@@ -11,14 +12,16 @@ import com.typee.logic.commands.exceptions.NullUndoableActionException;
  */
 public class HistoryManager extends EngagementList {
 
-    private final List<ReadOnlyEngagementList> historyList;
+    private final List<ReadOnlyEngagementList> engagementsHistoryList;
+    private final LinkedList<Command> commandHistoryList;
     private int versionPointer;
 
     public HistoryManager(ReadOnlyEngagementList initialList) {
         super(initialList);
         versionPointer = 0;
-        historyList = new LinkedList<>();
-        historyList.add(new EngagementList(initialList));
+        engagementsHistoryList = new LinkedList<>();
+        engagementsHistoryList.add(new EngagementList(initialList));
+        commandHistoryList = new LinkedList<>();
     }
 
     /**
@@ -29,7 +32,7 @@ public class HistoryManager extends EngagementList {
             throw new NullUndoableActionException();
         }
         versionPointer--;
-        resetData(historyList.get(versionPointer));
+        resetData(engagementsHistoryList.get(versionPointer));
     }
 
     /**
@@ -41,7 +44,7 @@ public class HistoryManager extends EngagementList {
         }
 
         versionPointer++;
-        resetData(historyList.get(versionPointer));
+        resetData(engagementsHistoryList.get(versionPointer));
     }
 
     public boolean isUndoable() {
@@ -49,11 +52,24 @@ public class HistoryManager extends EngagementList {
     }
 
     public boolean isRedoable() {
-        return versionPointer < historyList.size() - 1;
+        return versionPointer < engagementsHistoryList.size() - 1;
     }
 
     private void clearUpToNow() {
-        historyList.subList(versionPointer + 1, historyList.size()).clear();
+        engagementsHistoryList.subList(versionPointer + 1, engagementsHistoryList.size()).clear();
+        commandHistoryList.subList(versionPointer + 1, commandHistoryList.size()).clear();
+    }
+
+    /**
+     * Pushes a command to the local {@code commandHistoryList}.
+     * @param command command to be pushed.
+     */
+    public void pushCommandHistory(Command command) {
+        commandHistoryList.push(command);
+    }
+
+    public Command getLatestCommand() {
+        return commandHistoryList.pop();
     }
 
     /**
@@ -61,7 +77,7 @@ public class HistoryManager extends EngagementList {
      */
     public void saveState() {
         clearUpToNow();
-        historyList.add(new EngagementList(this));
+        engagementsHistoryList.add(new EngagementList(this));
         versionPointer++;
     }
 

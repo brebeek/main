@@ -42,6 +42,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New engagement added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENGAGEMENT = "This engagement clashes with an already existing one";
+    public static final String ACTION_MESSAGE = MESSAGE_SUCCESS;
 
     private final Engagement toAdd;
 
@@ -67,7 +68,13 @@ public class AddCommand extends Command {
 
         model.addEngagement(toAdd);
         model.saveEngagementList();
+        model.pushCommandHistory(this);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return ACTION_MESSAGE;
     }
 
     @Override

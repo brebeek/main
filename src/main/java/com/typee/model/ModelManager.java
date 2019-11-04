@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.typee.commons.core.GuiSettings;
 import com.typee.commons.core.LogsCenter;
 import com.typee.commons.util.CollectionUtil;
+import com.typee.logic.commands.Command;
 import com.typee.logic.commands.exceptions.NullRedoableActionException;
 import com.typee.logic.commands.exceptions.NullUndoableActionException;
 import com.typee.model.engagement.Engagement;
@@ -171,6 +172,16 @@ public class ModelManager implements Model {
     @Override
     public void saveEngagementList() {
         historyManager.saveState();
+    }
+
+    @Override
+    public void pushCommandHistory(Command command) {
+        historyManager.pushCommandHistory(command);
+    }
+
+    @Override
+    public Command getLatestCommand() {
+        return historyManager.getLatestCommand();
     }
 
     @Override

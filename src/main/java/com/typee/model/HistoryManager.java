@@ -1,5 +1,7 @@
 package com.typee.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class HistoryManager extends EngagementList {
 
     private final List<ReadOnlyEngagementList> engagementsHistoryList;
     private final LinkedList<Command> commandHistoryList;
+    private final LinkedList<Command> undoneCommandHistoryList;
     private int versionPointer;
 
     public HistoryManager(ReadOnlyEngagementList initialList) {
@@ -22,6 +25,7 @@ public class HistoryManager extends EngagementList {
         engagementsHistoryList = new LinkedList<>();
         engagementsHistoryList.add(new EngagementList(initialList));
         commandHistoryList = new LinkedList<>();
+        undoneCommandHistoryList = new LinkedList<>();
     }
 
     /**
@@ -68,8 +72,24 @@ public class HistoryManager extends EngagementList {
         commandHistoryList.push(command);
     }
 
+    /**
+     * Returns the last command in {@code commandHistoryList}.
+     * @return the latest command in stack
+     */
     public Command getLatestCommand() {
-        return commandHistoryList.pop();
+        requireNonNull(commandHistoryList);
+        Command latestCommand = commandHistoryList.pop();
+        undoneCommandHistoryList.push(latestCommand);
+        return latestCommand;
+    }
+
+    /**
+     * Returns the last command in {@code UndoneCommandHistoryList}.
+     * @return the last undone command
+     */
+    public Command getLastUndoneCommand() {
+        requireNonNull(undoneCommandHistoryList);
+        return undoneCommandHistoryList.pop();
     }
 
     /**

@@ -11,7 +11,7 @@ import com.typee.model.Model;
 public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
-    public static final String MESSAGE_SUCCESS = "Successfully redone!";
+    public static final String MESSAGE_SUCCESS_PREFIX = "Successfully redone: ";
     public static final String MESSAGE_FAILURE = "No commands to redo!";
 
     @Override
@@ -25,6 +25,6 @@ public class RedoCommand extends Command {
 
         model.redoEngagementList();
         model.updateFilteredEngagementList(Model.PREDICATE_SHOW_ALL_ENGAGEMENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS_PREFIX + model.getLastUndoneCommand());
     }
 }

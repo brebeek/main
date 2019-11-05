@@ -289,6 +289,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void pushCommandHistory(Command command) {
+            // This method is called in the execution
+        }
+
+        @Override
+        public Command getLatestCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void saveEngagementList() {
         }
 

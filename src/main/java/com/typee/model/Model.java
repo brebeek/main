@@ -104,6 +104,8 @@ public interface Model {
 
     boolean hasNoRedoableCommand();
 
+    Command getLastUndoneCommand();
+
     void saveEngagementList();
 
     void redoEngagementList() throws NullRedoableActionException;

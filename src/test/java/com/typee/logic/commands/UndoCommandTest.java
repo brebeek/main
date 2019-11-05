@@ -5,6 +5,7 @@ import static com.typee.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.typee.testutil.TypicalEngagements.getTypicalEngagementList;
 import static com.typee.testutil.TypicalEngagements.getTypicalEngagements;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.typee.logic.commands.exceptions.NullUndoableActionException;
@@ -17,6 +18,7 @@ public class UndoCommandTest {
     private Model model = new ModelManager(getTypicalEngagementList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalEngagementList(), new UserPrefs());
 
+    @BeforeEach
     public void setUp() {
         model.deleteEngagement(getTypicalEngagements().get(0));
         model.saveEngagementList();
@@ -27,17 +29,14 @@ public class UndoCommandTest {
 
     @Test
     public void execute_single_undoableState() {
-        setUp();
-
         try {
             expectedModel.undoEngagementList();
         } catch (NullUndoableActionException e) {
             throw new AssertionError("Wrong null undoable command");
         }
 
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS_PREFIX, expectedModel);
 
         assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
     }
-
 }

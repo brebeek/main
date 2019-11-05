@@ -157,6 +157,11 @@ public class ModelManager implements Model {
         historyManager.undo();
     }
 
+    @Override
+    public Command getLatestCommand() {
+        return historyManager.getLatestCommand();
+    }
+
     //=========== Redo ================================================================================
 
     @Override
@@ -170,6 +175,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Command getLastUndoneCommand() {
+        return historyManager.getLastUndoneCommand();
+    }
+
+    @Override
     public void saveEngagementList() {
         historyManager.saveState();
     }
@@ -179,10 +189,6 @@ public class ModelManager implements Model {
         historyManager.pushCommandHistory(command);
     }
 
-    @Override
-    public Command getLatestCommand() {
-        return historyManager.getLatestCommand();
-    }
 
     @Override
     public boolean equals(Object obj) {

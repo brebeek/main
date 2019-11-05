@@ -25,6 +25,6 @@ public class RedoCommand extends Command {
 
         model.redoEngagementList();
         model.updateFilteredEngagementList(Model.PREDICATE_SHOW_ALL_ENGAGEMENTS);
-        return new CommandResult(MESSAGE_SUCCESS_PREFIX + model.getLastUndoneCommand());
+        return new CommandResult(String.format(MESSAGE_SUCCESS_PREFIX, model.getLastUndoneCommand()));
     }
 }

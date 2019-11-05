@@ -284,6 +284,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Command getLastUndoneCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void redoEngagementList() throws NullRedoableActionException {
             throw new AssertionError("This method should not be called.");
         }
@@ -294,7 +299,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Command getLatestCommand() {
+        public Command getLastCommand() {
             throw new AssertionError("This method should not be called.");
         }
 

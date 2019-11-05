@@ -112,5 +112,5 @@ public interface Model {
 
     void pushCommandHistory(Command command);
 
-    Command getLatestCommand();
+    Command getLastCommand();
 }

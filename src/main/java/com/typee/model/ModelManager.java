@@ -158,8 +158,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Command getLatestCommand() {
-        return historyManager.getLatestCommand();
+    public Command getLastCommand() {
+        return historyManager.getLastCommand();
     }
 
     //=========== Redo ================================================================================

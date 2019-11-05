@@ -61,7 +61,7 @@ public class HistoryManager extends EngagementList {
 
     private void clearUpToNow() {
         engagementsHistoryList.subList(versionPointer + 1, engagementsHistoryList.size()).clear();
-        commandHistoryList.subList(versionPointer + 1, commandHistoryList.size()).clear();
+        undoneCommandHistoryList.clear();
     }
 
     /**
@@ -76,7 +76,7 @@ public class HistoryManager extends EngagementList {
      * Returns the last command in {@code commandHistoryList}.
      * @return the latest command in stack
      */
-    public Command getLatestCommand() {
+    public Command getLastCommand() {
         requireNonNull(commandHistoryList);
         Command latestCommand = commandHistoryList.pop();
         undoneCommandHistoryList.push(latestCommand);
@@ -84,7 +84,7 @@ public class HistoryManager extends EngagementList {
     }
 
     /**
-     * Returns the last command in {@code UndoneCommandHistoryList}.
+     * Returns the last command in {@code undoneCommandHistoryList}.
      * @return the last undone command
      */
     public Command getLastUndoneCommand() {

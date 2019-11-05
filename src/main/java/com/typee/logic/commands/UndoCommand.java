@@ -11,7 +11,7 @@ import com.typee.model.Model;
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS_PREFIX = "Successfully undone command: ";
+    public static final String MESSAGE_SUCCESS_PREFIX = "Successfully undone command: %1$s";
     public static final String MESSAGE_FAILURE = "No commands to undo!";
 
     @Override
@@ -25,6 +25,6 @@ public class UndoCommand extends Command {
 
         model.undoEngagementList();
         model.updateFilteredEngagementList(Model.PREDICATE_SHOW_ALL_ENGAGEMENTS);
-        return new CommandResult(MESSAGE_SUCCESS_PREFIX + model.getLatestCommand());
+        return new CommandResult(String.format(MESSAGE_SUCCESS_PREFIX, model.getLastCommand()));
     }
 }

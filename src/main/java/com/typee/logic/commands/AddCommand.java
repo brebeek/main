@@ -42,7 +42,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New engagement added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENGAGEMENT = "This engagement clashes with an already existing one";
-    public static final String ACTION_MESSAGE = MESSAGE_SUCCESS;
+    public static final String ACTION_MESSAGE = "Add %1$s";
 
     private final Engagement toAdd;
 
@@ -74,7 +74,7 @@ public class AddCommand extends Command {
 
     @Override
     public String toString() {
-        return ACTION_MESSAGE;
+        return String.format(ACTION_MESSAGE, toAdd);
     }
 
     @Override

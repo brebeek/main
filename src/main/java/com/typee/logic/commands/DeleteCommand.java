@@ -23,9 +23,10 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ENGAGEMENT_SUCCESS = "Deleted engagement: %1$s";
-    public static final String ACTION_MESSAGE = MESSAGE_DELETE_ENGAGEMENT_SUCCESS;
+    public static final String ACTION_MESSAGE = "Delete %1$s";
 
     private final Index targetIndex;
+    private Engagement engagementToDelete;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -40,8 +41,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENGAGEMENT_DISPLAYED_INDEX);
         }
 
-
-        Engagement engagementToDelete = lastShownList.get(targetIndex.getZeroBased());
+        engagementToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEngagement(engagementToDelete);
         model.saveEngagementList();
         model.pushCommandHistory(this);
@@ -51,7 +51,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        return ACTION_MESSAGE;
+        return String.format(ACTION_MESSAGE, engagementToDelete);
     }
 
     @Override
